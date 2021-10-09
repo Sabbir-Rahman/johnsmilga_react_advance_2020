@@ -10,7 +10,7 @@ const UseEffectBasics = () => {
       document.title = `New Message ${value}`;
     }
     
-  })
+  },[])
   
   return (
     <>
