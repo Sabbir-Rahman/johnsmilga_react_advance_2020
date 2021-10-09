@@ -6,11 +6,15 @@ const UseEffectBasics = () => {
 
   const [value,setvalue] = useState(0)
   useEffect(() => {
-    if (value>1){
+    if (value>=1){
       document.title = `New Message ${value}`;
     }
     
-  },[])
+  }, [value])
+
+  //if we use [] as second parameter it will run at once
+  //then 13 line will be }, [])
+  //we can have as many use effect as we want
   
   return (
     <>
