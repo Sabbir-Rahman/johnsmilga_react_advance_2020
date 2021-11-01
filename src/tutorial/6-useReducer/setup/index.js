@@ -4,11 +4,19 @@ import { data } from '../../../data';
 
 // reducer function
 const reducer = (state,action)=>{
-
+  console.log(state,action)
+  if(action.type === 'ADD_ITEM'){
+    const newPeople = [...state.people, action.payload]
+    return {...state, people:newPeople,isModalOpen: true,modalContent: 'item added'}
+  }
+  if (action.type === 'NO_VALUE'){
+    return {...state, isModalOpen: true, modalContent:'Please enter value'}
+  }
+  throw new Error('no matching action type')
 }
 
 const defaultState = {
-  people:data,
+  people:[],
   isModalOpen:true,
   modalContent:'hello world'
 }
@@ -20,9 +28,11 @@ const Index = () => {
   const handleSubmit = (e)=>{
     e.preventDefault()
     if(name){
-      
+      const newItem = {id:new Date().getTime().toString(), name}
+      dispatch({type: 'ADD_ITEM', payload: newItem})
+      setname('')
     } else {
-      
+      dispatch({type: 'NO_VALUE'})
     }
   }
   return <>
