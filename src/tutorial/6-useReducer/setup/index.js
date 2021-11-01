@@ -8,29 +8,25 @@ const reducer = (state,action)=>{
 }
 
 const defaultState = {
-  people:[],
-  isModalOpen:false,
+  people:data,
+  isModalOpen:true,
   modalContent:'hello world'
 }
 
 const Index = () => {
   const [name,setname] = useState('')
-  const [people,setpeople] = useState(data)
-  const [showModal,setShowModal] = useState(false)
   const [state,dispatch] = useReducer(reducer, defaultState)
 
   const handleSubmit = (e)=>{
     e.preventDefault()
     if(name){
-      setShowModal(true)
-      setpeople([...people,{id: new Date().getTime().toString(), name}])
-      setname('')
+      
     } else {
-      setShowModal(true)
+      
     }
   }
   return <>
-  {showModal && <Modal/>}
+  {state.isModalOpen && <Modal modalContent={state.modalContent}/>}
   <form onSubmit={handleSubmit} className='form'>
     <div>
       <input type="text" value={name} onChange={(e)=>setname(e.target.value)}
@@ -38,7 +34,7 @@ const Index = () => {
     </div>
     <button type='submit'>add</button>
   </form>
-  {people.map((person)=>{
+  {state.people.map((person)=>{
     return (
       <div key={person.id}>
         <h4>{person.name}</h4>
