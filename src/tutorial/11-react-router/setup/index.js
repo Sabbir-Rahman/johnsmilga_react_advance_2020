@@ -21,12 +21,12 @@ const ReactRouterSetup = () => {
     <Route path="/people">
       <People/>
     </Route>
-    <Route path="/error">
+    {/* <Route path="/error">
       <Error/>
     </Route>
     <Route path="/person">
       <Person/>
-    </Route>
+    </Route> */}
   </Router>
   )
 };
